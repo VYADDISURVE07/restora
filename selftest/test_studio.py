@@ -32,8 +32,10 @@ def studio():
     server, url, st = start_in_background(0, s)
     yield url
     server.shutdown()
+    server.server_close()
     if st.demo not in (None, "external"):
         st.demo.shutdown()
+        st.demo.server_close()
 
 
 def test_pages_and_status(studio):
@@ -56,7 +58,7 @@ def test_demo_plan_and_run(studio):
     code, run = call(studio, "/api/run", {"records": ex["records"], "options": {"brain": "rules"}, "source": "demo.csv"})
     rid = run["run_id"]
     events, after = [], -1
-    for _ in range(150):
+    for _ in range(300):                      # up to 30 s: CI runners can be slow
         code, data = call(studio, f"/api/run/{rid}/events?after={after}")
         events += data["events"]
         if data["events"]:

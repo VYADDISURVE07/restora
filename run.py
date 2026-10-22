@@ -266,6 +266,7 @@ def main(argv=None) -> int:
     finally:
         if server:
             server.shutdown()
+            server.server_close()
 
     if args.open and (run_dir / "report.html").exists():
         webbrowser.open((run_dir / "report.html").as_uri())

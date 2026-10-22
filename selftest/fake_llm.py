@@ -54,3 +54,4 @@ class FakeLLM:
 
     def stop(self):
         self.server.shutdown()
+        self.server.server_close()

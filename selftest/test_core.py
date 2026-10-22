@@ -275,6 +275,7 @@ def api():
     server = mock_server.start(18098)
     yield "http://127.0.0.1:18098"
     server.shutdown()
+    server.server_close()
 
 
 def run(api, **kw):

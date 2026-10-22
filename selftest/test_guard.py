@@ -46,6 +46,7 @@ def bank():
     server = mock_server.start(18099)
     yield
     server.shutdown()
+    server.server_close()
 
 
 SETUP = [
