@@ -1,0 +1,13 @@
+{
+  "name": "Restora",
+  "image": "mcr.microsoft.com/devcontainers/python:3.12",
+  "postCreateCommand": "pip install -r requirements.txt && python run.py --selftest",
+  "postAttachCommand": "echo 'Try:  python run.py --demo     or     python run.py --studio  (then open the forwarded port 8765)'",
+  "forwardPorts": [8765],
+  "portsAttributes": {
+    "8765": { "label": "Restora Studio", "onAutoForward": "openBrowser" }
+  },
+  "customizations": {
+    "codespaces": { "openFiles": ["README.md"] }
+  }
+}

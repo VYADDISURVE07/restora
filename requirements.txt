@@ -1,0 +1,6 @@
+# Restora needs only these packages. Python 3.9 or newer.
+requests>=2.28
+pytest>=7.4
+allure-pytest>=2.13
+openpyxl>=3.1
+tomli>=2.0; python_version < "3.11"

@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>Restora</title>
+<style>
+@font-face { font-family: "Hyperlegible"; src: url("../../restora/studio/static/fonts/atkinson-hyperlegible-next-latin-400-normal.woff2"); font-weight: 400; }
+@font-face { font-family: "Hyperlegible"; src: url("../../restora/studio/static/fonts/atkinson-hyperlegible-next-latin-700-normal.woff2"); font-weight: 700; }
+@font-face { font-family: "Hyperlegible Mono"; src: url("../../restora/studio/static/fonts/atkinson-hyperlegible-mono-latin-400-normal.woff2"); }
+html, body { margin: 0; height: 100%; }
+body { background: #f5f7fb; color: #142033; font-family: "Hyperlegible", "Segoe UI", sans-serif; display: grid; place-items: center; }
+.wrap { width: 1040px; }
+.brand { display: flex; align-items: center; gap: 17px; }
+.brand svg { width: 64px; height: 64px; }
+h1 { font-size: 86px; line-height: 1; margin: 0; letter-spacing: -0.03em; }
+.sub { font-size: 34px; line-height: 1.25; margin: 26px 0 0; max-width: 24ch; }
+.lines { margin-top: 35px; display: grid; gap: 11px; font-size: 23px; color: #56657c; }
+.spec { margin-top: 43px; font: 26px/1.4 "Hyperlegible Mono", Consolas, monospace; }
+del { color: #b42318; background: #fcebe9; text-decoration-thickness: 2px; border-radius: 4px; padding: 0 3px; }
+ins { color: #6a3fd0; background: #efe8ff; text-decoration-thickness: 3px; text-underline-offset: 6px; border-radius: 4px; padding: 0 4px; }
+.by { margin-top: 49px; font-size: 23px; color: #142033; }
+</style></head>
+<body><div class="wrap">
+  <div class="brand"><svg viewBox="0 0 32 32"><rect x="1" y="1" width="30" height="30" rx="8" fill="#142033"/><path d="M9 11.5h9.5a3.5 3.5 0 0 1 0 7H13l6 5" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="23.5" cy="9" r="2.4" fill="#8f6bea"/></svg><h1 id="title">Restora</h1></div>
+  <p class="sub" id="sub"></p>
+  <div class="spec" id="spec">Authorization: Bearer <del>&lt;token&gt;</del>&#8202;<ins>{{Login.access_token}}</ins></div>
+  <div class="lines" id="lines"></div>
+  <div class="by" id="by"></div>
+</div>
+<script>
+const q = new URLSearchParams(location.search);
+document.getElementById("sub").textContent = q.get("sub") || "";
+document.getElementById("by").textContent = q.get("by") || "";
+if (q.get("nospec")) document.getElementById("spec").remove();
+for (const l of (q.get("lines") || "").split("|").filter(Boolean)) {
+  const d = document.createElement("div"); d.textContent = l; document.getElementById("lines").appendChild(d);
+}
+</script></body></html>

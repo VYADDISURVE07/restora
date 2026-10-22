@@ -1,0 +1,51 @@
+# Restora settings. Every value here is optional: delete a line and the default is used.
+# Command-line flags win over this file (for example: run.bat --brain rules --heal suggest).
+
+[brain]
+# ai    = rules first, then the local AI model when the rules have no answer (falls back to rules if no model)
+# rules = rules only: fast, free and exactly repeatable (no AI involved)
+# off   = run every row exactly as typed (only explicit {{...}} references are filled)
+mode = "ai"
+reorder = true             # move a row up when another row clearly needs a value it returns (e.g. a login token)
+smart_compare = true       # accept ids, timestamps and tokens that change on every call, and say so
+capture_expected = true    # rows with no ExpectedResponse get the real response in the corrected sheet
+seed = 0                   # 0 = fresh test data every run; any other number = the same data every run
+base_url = ""              # for rows whose URL starts with "/", e.g. "https://uat.example.com"
+
+[heal]
+# auto    = fix a rejected request, retry, and mark the row HEALED (never for negative tests or server errors)
+# suggest = find and verify the fix, but keep the row FAILED and report the fix
+# off     = no healing
+mode = "auto"
+max_attempts = 3
+statuses = [400, 401, 403, 405, 406, 409, 415, 422, 428, 429]
+count_healed_as = "pass"   # "fail" makes healed rows fail the run (exit code 1) - useful in CI
+check_negative = true      # a negative test must be refused for its own reason, not for a missing header or login
+
+[ai]
+provider = "ollama"                  # "ollama", or "openai" for any OpenAI-compatible server (LM Studio, llama.cpp, vLLM ...)
+url = "http://localhost:11434"       # LM Studio: http://localhost:1234/v1   llama.cpp: http://localhost:8080/v1
+model = "qwen3:4b-instruct"          # small, free, Apache-2.0 licensed; qwen3:1.7b for older PCs, qwen3:8b for big GPUs
+timeout = 120
+temperature = 0
+api_key_env = ""                     # only for cloud servers: the NAME of an environment variable holding the key
+explain_failures = true              # ask the model to explain failures the rules cannot explain
+max_calls = 40                       # per run, so a big sheet never turns into a long AI session
+
+[run]
+timeout = 30                         # seconds to wait for each response
+insecure = false                     # true = do not check SSL certificates (test servers only)
+
+[plugins]
+folder = "plugins"                   # every .py file here is loaded (see plugins/README.md)
+enabled = true
+
+[generators]
+# Fixed values that replace generated test data, by field name. For example:
+# email = "qa.team@example.com"
+# pan = "ABCPE1234F"
+
+[synonyms]
+# Extra names that mean the same thing, so the brain can connect them. For example:
+# token = ["sessionKey", "authKey"]
+# customerId = ["clientRef"]

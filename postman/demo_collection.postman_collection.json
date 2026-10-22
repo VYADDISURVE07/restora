@@ -1,0 +1,211 @@
+{
+  "info": {
+    "name": "Restora demo collection",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://127.0.0.1:18099"
+    },
+    {
+      "key": "token",
+      "value": "demo-token-123"
+    }
+  ],
+  "item": [
+    {
+      "name": "Health check",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/health",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "health"
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "Saved example",
+          "code": 200,
+          "status": "x",
+          "body": "{\"status\":\"UP\"}"
+        }
+      ]
+    },
+    {
+      "name": "Users",
+      "item": [
+        {
+          "name": "Get one user",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/users/1",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "users",
+                "1"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Saved example",
+              "code": 200,
+              "status": "x",
+              "body": "{\n  \"id\": 1,\n  \"name\": \"Asha Rao\",\n  \"email\": \"asha@example.com\",\n  \"active\": true\n}"
+            }
+          ],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('ok', function(){ pm.response.to.have.status(200); });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Create user",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/users",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "users"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\"name\":\"Postman User\",\"email\":\"pm@example.com\"}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "name": "Saved example",
+              "code": 201,
+              "status": "x",
+              "body": "{\"id\":\"*\",\"name\":\"Postman User\",\"email\":\"pm@example.com\",\"createdAt\":\"*\"}"
+            }
+          ]
+        },
+        {
+          "name": "Upload a document (form-data)",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/users",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "users"
+              ]
+            },
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "type": "file",
+                  "src": "x.pdf"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Secure",
+      "auth": {
+        "type": "bearer",
+        "bearer": [
+          {
+            "key": "token",
+            "value": "{{token}}",
+            "type": "string"
+          }
+        ]
+      },
+      "item": [
+        {
+          "name": "Profile (inherits bearer auth)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/secure/profile",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "secure",
+                "profile"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Saved example",
+              "code": 200,
+              "status": "x",
+              "body": "{\"username\":\"demo\",\"role\":\"tester\"}"
+            }
+          ]
+        },
+        {
+          "name": "Profile without auth",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/secure/profile",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "secure",
+                "profile"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Saved example",
+              "code": 401,
+              "status": "x",
+              "body": "{\"error\":\"missing or invalid token\"}"
+            }
+          ],
+          "auth": {
+            "type": "noauth"
+          }
+        }
+      ]
+    }
+  ]
+}

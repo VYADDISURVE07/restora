@@ -1,0 +1,15 @@
+﻿Name,Method,URL,Headers,Body,ExpectedStatus,ExpectedResponse
+Health check,GET,http://127.0.0.1:18099/health,,,200,"{""status"":""UP""}"
+Get one user,GET,http://127.0.0.1:18099/users/1,,,200,"{""id"":1,""name"":""Asha Rao"",""email"":""asha@example.com"",""active"":true}"
+List active users (query string in the URL),GET,http://127.0.0.1:18099/users?active=true,,,,"{""count"":2,""users"":[{""id"":1,""name"":""Asha Rao""},{""id"":2,""name"":""Ravi Iyer""}]}"
+Unknown user gives 404,GET,http://127.0.0.1:18099/users/999,,,404,"{""error"":""user not found""}"
+"Create user (id and createdAt change every time, so *)",POST,http://127.0.0.1:18099/users,,"{""name"":""Meera Shah"",""email"":""meera@example.com""}",201,"{""id"":""*"",""name"":""Meera Shah"",""email"":""meera@example.com"",""createdAt"":""*""}"
+Create user without a name gives 400,POST,http://127.0.0.1:18099/users,,"{""email"":""nobody@example.com""}",400,"{""error"":""name is required""}"
+Login with the right password,POST,http://127.0.0.1:18099/login,,"{""username"":""demo"",""password"":""demo123""}",200,"{""token"":""demo-token-123"",""expiresIn"":3600}"
+Login with a wrong password gives 401,POST,http://127.0.0.1:18099/login,,"{""username"":""demo"",""password"":""wrong""}",401,"{""error"":""invalid credentials""}"
+Profile with a token (header typed as Name: value),GET,http://127.0.0.1:18099/secure/profile,Authorization: Bearer demo-token-123,,200,"{""username"":""demo"",""role"":""tester""}"
+Profile without a token gives 401,GET,http://127.0.0.1:18099/secure/profile,,,401,"{""error"":""missing or invalid token""}"
+"JSON body, no Content-Type typed (Lite works it out)",POST,http://127.0.0.1:18099/echo,,"{""hello"":""world""}",200,"{""contentType"":""application/json"",""received"":{""hello"":""world""}}"
+"Form body, no Content-Type typed (Lite works it out)",POST,http://127.0.0.1:18099/echo,,grant=demo&scope=read,200,"{""contentType"":""application/x-www-form-urlencoded"",""received"":{""grant"":""demo"",""scope"":""read""}}"
+XML response is compared as text,POST,http://127.0.0.1:18099/xml,,<ping/>,200,"<?xml version=""1.0""?><result><ok>true</ok></result>"
+#This row is switched off because it starts with a hash,GET,http://127.0.0.1:18099/not-used,,,,

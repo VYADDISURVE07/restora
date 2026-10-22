@@ -1,0 +1,3 @@
+# Only for recording the demo video (tools/demo_video.py). Not needed to use Restora.
+playwright>=1.45
+imageio-ffmpeg>=0.5

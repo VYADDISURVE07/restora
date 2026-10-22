@@ -1,0 +1,5 @@
+﻿Name,Method,URL,Headers,Body,ExpectedStatus,ExpectedResponse
+Login,POST,http://127.0.0.1:18099/api/v1/auth/login,,"{""username"": ""demo"", ""password"": ""demo123""}",200,"{""access_token"":""*"",""token_type"":""Bearer"",""expires_in"":900}"
+Add a beneficiary (signed by a plug-in),POST,http://127.0.0.1:18099/api/v1/beneficiaries,Authorization: Bearer {{Login.access_token}},"{""name"": ""Ravi Iyer"", ""nickname"": ""<nickname>"", ""accountNumber"": ""500010009999"", ""ifsc"": ""DEMO0004321""}",201,"{""beneficiaryId"":""*"",""name"":""Ravi Iyer"",""accountNumber"":""500010009999"",""ifsc"":""DEMO0004321"",""status"":""ACTIVE""}"
+Beneficiary with a bad IFSC is rejected,POST,http://127.0.0.1:18099/api/v1/beneficiaries,Authorization: Bearer {{Login.access_token}},"{""name"": ""Ravi Iyer"", ""accountNumber"": ""500010009999"", ""ifsc"": ""BAD123""}",400,"{""errors"":{""ifsc"":[""Invalid IFSC code""]}}"
+"USD exchange rate (suggest mode: fix reported, not applied)",GET,http://127.0.0.1:18099/api/v1/rates,,,200,"{""base"":""INR"",""currency"":""USD"",""rate"":0.012,""asOf"":""*""}"

@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>Code</title>
+<style>
+@font-face { font-family: "Hyperlegible Mono"; src: url("../../restora/studio/static/fonts/atkinson-hyperlegible-mono-latin-400-normal.woff2"); }
+@font-face { font-family: "Hyperlegible"; src: url("../../restora/studio/static/fonts/atkinson-hyperlegible-next-latin-600-normal.woff2"); font-weight: 600; }
+html, body { margin: 0; height: 100%; background: #1d2433; }
+.win { position: absolute; inset: 28px 36px 96px; background: #ffffff; border-radius: 12px; overflow: hidden; display: flex; flex-direction: column; border: 1px solid #c3cddb; }
+.tab { height: 46px; background: #f5f7fb; border-bottom: 1px solid #dfe5ee; display: flex; align-items: center; padding: 0 20px; font: 600 17px "Hyperlegible", "Segoe UI", sans-serif; color: #142033; gap: 12px; }
+.tab span.path { color: #56657c; font-weight: 400; }
+#code { flex: 1; overflow: hidden; margin: 0; padding: 16px 0; font: 19px/1.55 "Hyperlegible Mono", Consolas, monospace; color: #142033; counter-reset: ln; }
+#code .l { display: block; padding: 0 24px 0 74px; text-indent: -74px; white-space: pre-wrap; }
+#code .l::before { counter-increment: ln; content: counter(ln); display: inline-block; width: 52px; margin-right: 22px; text-align: right; color: #a3afc2; }
+#code .l.hl { background: #efe8ff; box-shadow: inset 4px 0 0 #6a3fd0; }
+.cm { color: #6b7a90; } .st { color: #137044; } .kw { color: #6a3fd0; font-weight: 600; } .dc { color: #b35c00; } .sec { color: #2457c5; font-weight: 600; } .key { color: #142033; font-weight: 600; } .nu { color: #b42318; }
+</style></head>
+<body><div class="win"><div class="tab"><span id="name"></span><span class="path" id="path"></span></div><pre id="code"></pre></div>
+<script>
+function esc(s){return s.replace(/[&<>]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]));}
+function hl(line, lang){
+  const m = line.match(/^(\s*)(#.*)$/); if (m) return esc(m[1]) + `<span class="cm">${esc(m[2])}</span>`;
+  let code = line, comment = "";
+  const h = line.search(/\s#\s/); if (h >= 0) { code = line.slice(0, h); comment = line.slice(h); }
+  let s = esc(code);
+  s = s.replace(/(&quot;|")(.*?)("|&quot;)/g, '<span class="st">"$2"</span>');
+  if (lang === "toml") {
+    s = s.replace(/^(\s*)\[(.+)\]/, '$1<span class="sec">[$2]</span>').replace(/^(\s*)([A-Za-z_]+)(\s*=)/, '$1<span class="key">$2</span>$3');
+    s = s.replace(/=(\s*)(true|false|\d+)/g, '=$1<span class="nu">$2</span>');
+  } else {
+    s = s.replace(/^(\s*)(@[\w.]+)/, '$1<span class="dc">$2</span>');
+    s = s.replace(/\b(def|from|import|return|if|in|for|not|and|or|None|True|False)\b/g, '<span class="kw">$1</span>');
+  }
+  return s + (comment ? `<span class="cm">${esc(comment)}</span>` : "");
+}
+window.code = {
+  show(name, path, text, lang, highlight, start){
+    document.getElementById("name").textContent = name; document.getElementById("path").textContent = path;
+    document.getElementById("code").style.counterReset = `ln ${(start || 1) - 1}`;
+    const hls = new Set(highlight || []);
+    document.getElementById("code").innerHTML = text.replace(/\r/g,"").split("\n").map((l,i)=>`<span class="l${hls.has(i+1)?" hl":""}">${hl(l, lang)||" "}</span>`).join("");
+  },
+  mark(lines){ document.querySelectorAll("#code .l").forEach((el,i)=>el.classList.toggle("hl", lines.includes(i+1))); }
+};
+</script></body></html>

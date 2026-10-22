@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Restora Studio</title>
+<link rel="icon" href="/static/logo.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/static/app.css">
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="/" aria-label="Restora Studio home">
+    <svg class="mark" viewBox="0 0 32 32" aria-hidden="true"><rect x="1" y="1" width="30" height="30" rx="8" class="mark-bg"/><path d="M9 11.5h9.5a3.5 3.5 0 0 1 0 7H13l6 5" class="mark-ink"/><circle cx="23.5" cy="9" r="2.4" class="mark-dot"/></svg>
+    <span class="brand-name">Restora</span>
+  </a>
+  <span class="source" id="source">No sheet open</span>
+  <div class="top-right">
+    <button class="ai-pill" id="aiPill" type="button" aria-describedby="aiText"><span class="dot" aria-hidden="true"></span><span id="aiText">Checking for a local AI model</span></button>
+    <button class="icon-btn" id="settingsBtn" type="button" aria-label="Settings" aria-expanded="false">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 15.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Z"/><path d="M19.4 13a7.6 7.6 0 0 0 0-2l2-1.6-2-3.4-2.4 1a7.7 7.7 0 0 0-1.7-1L15 3.5h-4l-.4 2.5a7.7 7.7 0 0 0-1.7 1l-2.4-1-2 3.4L6.6 11a7.6 7.6 0 0 0 0 2l-2 1.6 2 3.4 2.4-1a7.7 7.7 0 0 0 1.7 1l.4 2.5h4l.4-2.5a7.7 7.7 0 0 0 1.7-1l2.4 1 2-3.4Z"/></svg>
+    </button>
+  </div>
+</header>
+
+<section class="toolbar" aria-label="Sheet and run controls">
+  <div class="tool-group">
+    <label class="btn" for="fileInput">Open a sheet<input id="fileInput" type="file" accept=".csv,.xlsx,.xlsm,.json,.txt" hidden></label>
+    <button class="btn" id="pasteBtn" type="button">Paste cURL</button>
+    <button class="btn" id="demoBtn" type="button">Try the Demo Bank</button>
+    <button class="btn quiet" id="addRowBtn" type="button" disabled>Add a row</button>
+  </div>
+  <div class="tool-group right">
+    <div class="segmented" role="radiogroup" aria-label="Brain">
+      <span class="seg-label">Brain</span>
+      <button type="button" role="radio" data-brain="ai" aria-checked="true">AI</button>
+      <button type="button" role="radio" data-brain="rules" aria-checked="false">Rules</button>
+      <button type="button" role="radio" data-brain="off" aria-checked="false">Off</button>
+    </div>
+    <div class="segmented" role="radiogroup" aria-label="Healing">
+      <span class="seg-label">Healing</span>
+      <button type="button" role="radio" data-heal="auto" aria-checked="true">Auto</button>
+      <button type="button" role="radio" data-heal="suggest" aria-checked="false">Suggest</button>
+      <button type="button" role="radio" data-heal="off" aria-checked="false">Off</button>
+    </div>
+    <button class="btn primary" id="runBtn" type="button" disabled>Run tests</button>
+  </div>
+</section>
+
+<div class="summary" id="summary" hidden aria-live="polite"></div>
+
+<main class="workspace">
+  <section class="sheet-wrap" aria-label="Tests">
+    <div class="empty" id="empty">
+      <h1>Start with a sheet</h1>
+      <p>Open a CSV or Excel sheet with a URL column, a Postman collection, or a text file of cURL commands. Gaps, wrong order and rejected requests are fine: the brain fixes them and shows every change it makes.</p>
+      <div class="empty-actions">
+        <label class="btn" for="fileInput2">Open a sheet<input id="fileInput2" type="file" accept=".csv,.xlsx,.xlsm,.json,.txt" hidden></label>
+        <button class="btn" type="button" data-action="paste">Paste cURL</button>
+        <button class="btn primary" type="button" data-action="demo">Try the Demo Bank</button>
+      </div>
+      <p class="fine">Everything runs on this computer. With a local AI model (Ollama) the brain gets smarter; without one it still works using rules.</p>
+      <div class="specimen" aria-label="Examples of changes the brain makes">
+        <div class="spec-line"><code>Authorization: Bearer <del>&lt;token&gt;</del>&#8202;<ins>{{Login.access_token}}</ins></code><span>A gap filled from an earlier response</span></div>
+        <div class="spec-line"><code><del>POST</del>&#8202;<ins>PUT</ins> /customers/C1002</code><span>A rejected request healed (the API allowed only PUT)</span></div>
+        <div class="spec-line"><code>"createdAt": <del>"2026-10-20T09:00:00Z"</del>&#8202;<ins>"*"</ins></code><span>A value that changes on every call, accepted</span></div>
+      </div>
+    </div>
+    <div class="sheet" id="sheet" hidden>
+      <table id="grid">
+        <thead><tr>
+          <th class="c-status" scope="col">Result</th>
+          <th class="c-num" scope="col">Row</th>
+          <th class="c-name" scope="col">Name</th>
+          <th class="c-method" scope="col">Method</th>
+          <th class="c-url" scope="col">URL</th>
+          <th class="c-headers" scope="col">Headers</th>
+          <th class="c-body" scope="col">Body</th>
+          <th class="c-expstatus" scope="col">Expected status</th>
+          <th class="c-expected" scope="col">Expected response</th>
+        </tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </section>
+
+  <aside class="margin" aria-label="Brain notes and row details">
+    <div class="tabs" role="tablist">
+      <button type="button" role="tab" id="tabNotes" aria-selected="true" aria-controls="notes">Brain notes <span class="count" id="noteCount"></span></button>
+      <button type="button" role="tab" id="tabRow" aria-selected="false" aria-controls="rowPanel">Row details</button>
+    </div>
+    <div id="notes" role="tabpanel" aria-labelledby="tabNotes" class="panel"><p class="muted">The brain writes its notes here: what it filled in, moved, repaired or healed, and why.</p></div>
+    <div id="rowPanel" role="tabpanel" aria-labelledby="tabRow" class="panel" hidden><p class="muted">Select a row to see what was sent and what came back.</p></div>
+  </aside>
+</main>
+
+<footer class="ask" aria-label="Write a test in plain English">
+  <label for="askInput" class="ask-label">Describe a test</label>
+  <input id="askInput" type="text" placeholder="For example: check that a transfer with a negative amount is rejected" autocomplete="off">
+  <button class="btn" id="askBtn" type="button">Write test</button>
+  <span class="ask-hint" id="askHint">Uses the local AI model.</span>
+</footer>
+
+<div class="drawer" id="settings" hidden role="dialog" aria-modal="false" aria-labelledby="settingsTitle">
+  <h2 id="settingsTitle">Settings</h2>
+  <label class="field"><span>Local AI model</span><select id="modelSelect"></select></label>
+  <button class="btn quiet" id="recheckBtn" type="button">Check again</button>
+  <p class="fine" id="aiHelp"></p>
+  <label class="check"><input type="checkbox" id="strictBox"> Compare exactly (do not accept ids, timestamps or tokens that change on every call)</label>
+  <label class="check"><input type="checkbox" id="orderBox"> Keep the sheet order (never move rows)</label>
+  <label class="check"><input type="checkbox" id="seedBox"> Use the same test data on every run</label>
+  <button class="btn" id="closeSettings" type="button">Done</button>
+</div>
+
+<div class="modal" id="pasteModal" hidden role="dialog" aria-modal="true" aria-labelledby="pasteTitle">
+  <div class="modal-card">
+    <h2 id="pasteTitle">Paste cURL commands</h2>
+    <p class="fine">One or more commands, as copied from the browser's developer tools, Swagger or API documents. CSV text works too.</p>
+    <textarea id="pasteText" rows="10" spellcheck="false" placeholder="curl -X POST 'https://api.example.com/login' -H 'Content-Type: application/json' -d '{&quot;username&quot;:&quot;demo&quot;}'"></textarea>
+    <div class="modal-actions"><button class="btn quiet" type="button" id="pasteCancel">Cancel</button><button class="btn primary" type="button" id="pasteOk">Add these tests</button></div>
+  </div>
+</div>
+
+<div class="editor" id="editor" hidden role="dialog" aria-modal="true" aria-labelledby="editorTitle">
+  <div class="modal-card">
+    <h2 id="editorTitle">Edit</h2>
+    <textarea id="editorText" rows="8" spellcheck="false"></textarea>
+    <div class="modal-actions"><button class="btn quiet" type="button" id="editorCancel">Cancel</button><button class="btn primary" type="button" id="editorOk">Save</button></div>
+  </div>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+<script src="/static/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>Command Prompt</title>
+<style>
+@font-face { font-family: "Hyperlegible Mono"; src: url("../../restora/studio/static/fonts/atkinson-hyperlegible-mono-latin-400-normal.woff2"); font-weight: 400; }
+@font-face { font-family: "Hyperlegible Mono"; src: url("../../restora/studio/static/fonts/atkinson-hyperlegible-mono-latin-600-normal.woff2"); font-weight: 600; }
+@font-face { font-family: "Hyperlegible"; src: url("../../restora/studio/static/fonts/atkinson-hyperlegible-next-latin-600-normal.woff2"); font-weight: 600; }
+html, body { margin: 0; height: 100%; background: #1d2433; }
+.win { position: absolute; inset: 28px 36px 96px; background: #0f1420; border-radius: 12px; overflow: hidden; display: flex; flex-direction: column;
+  box-shadow: 0 30px 60px -30px rgba(0,0,0,.6); border: 1px solid #2c3446; }
+.bar { height: 44px; background: #182030; display: flex; align-items: center; padding: 0 18px; gap: 10px; color: #9aa8be; font: 600 16px "Hyperlegible", "Segoe UI", sans-serif; }
+.bar .dot { width: 12px; height: 12px; border-radius: 50%; background: #34405a; }
+#out { flex: 1; overflow: hidden; padding: 16px 22px; font: 18px/1.5 "Hyperlegible Mono", Consolas, monospace; color: #d7deea; white-space: pre-wrap; word-break: break-word; }
+.prompt { color: #8fb4ff; } .cmd { color: #ffffff; font-weight: 600; }
+.caret { display: inline-block; width: 10px; height: 20px; background: #d7deea; vertical-align: -4px; animation: blink 1s steps(1) infinite; }
+@keyframes blink { 50% { opacity: 0; } }
+.c30{color:#5b6475}.c31{color:#ff8a80}.c32{color:#6ee7a8}.c33{color:#ffd166}.c34{color:#8fb4ff}.c35{color:#c3a6ff}.c36{color:#7fdbff}.c37{color:#ffffff}
+.c90{color:#7d879a}.c91{color:#ff8a80}.c92{color:#6ee7a8}.c93{color:#ffd166}.c94{color:#8fb4ff}.c95{color:#c3a6ff}.c96{color:#7fdbff}.c97{color:#ffffff}
+.b{font-weight:600}
+</style></head>
+<body><div class="win"><div class="bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span id="title">Command Prompt - Restora</span></div><div id="out"></div></div>
+<script>
+const out = document.getElementById("out");
+const PROMPT = "D:\\Solution Lab\\Restora>";
+function esc(s){return s.replace(/[&<>]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]));}
+function ansi(s){
+  let html="", cls=[], i=0; const re=/\x1b\[([0-9;]*)m/g; let m, last=0;
+  while((m=re.exec(s))){ html+=span(s.slice(last,m.index),cls); last=re.lastIndex;
+    const codes=m[1].split(";").filter(Boolean).map(Number); if(!codes.length) cls=[];
+    for(const c of codes){ if(c===0) cls=[]; else if(c===1) cls.push("b"); else if((c>=30&&c<=37)||(c>=90&&c<=97)) cls=cls.filter(x=>!/^c/.test(x)).concat("c"+c); } }
+  return html+span(s.slice(last),cls);
+}
+function span(t,cls){ if(!t) return ""; return cls.length?`<span class="${cls.join(" ")}">${esc(t)}</span>`:esc(t); }
+function scroll(){ out.scrollTop = out.scrollHeight; }
+window.term = {
+  async prompt(cmd, delay=38){
+    const line=document.createElement("div"); line.innerHTML=`<span class="prompt">${esc(PROMPT)}</span><span class="cmd"></span><span class="caret"></span>`;
+    out.appendChild(line); const c=line.querySelector(".cmd"); scroll();
+    for(const ch of cmd){ c.textContent+=ch; await new Promise(r=>setTimeout(r, delay + (ch===" "?30:0))); }
+    await new Promise(r=>setTimeout(r, 350)); line.querySelector(".caret").remove();
+  },
+  line(text){ const d=document.createElement("div"); d.innerHTML=ansi(text)||"&nbsp;"; out.appendChild(d); scroll(); },
+  idle(){ const line=document.createElement("div"); line.innerHTML=`<span class="prompt">${esc(PROMPT)}</span><span class="caret"></span>`; out.appendChild(line); scroll(); },
+  clear(){ out.innerHTML=""; },
+  title(t){ document.getElementById("title").textContent=t; }
+};
+</script></body></html>

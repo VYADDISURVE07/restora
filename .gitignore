@@ -1,0 +1,11 @@
+.venv/
+venv/
+wheels/
+reports/
+imported/
+__pycache__/
+*.pyc
+.pytest_cache/
+demo_video_out/
+*.log
+results.xml

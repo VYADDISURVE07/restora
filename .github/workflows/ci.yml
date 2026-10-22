@@ -1,0 +1,38 @@
+name: Self-tests
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+        python: ["3.9", "3.12", "3.13"]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - name: Install
+        run: pip install -r requirements.txt
+      - name: Restora's own tests
+        run: python run.py --selftest
+      - name: Demo Bank (expects exactly the one deliberate server error)
+        shell: bash
+        run: |
+          set +e
+          python run.py --demo --brain rules --junit demo-junit.xml
+          code=$?
+          echo "exit code: $code"
+          test "$code" -eq 1
+      - name: Corrected sheet passes with the brain off
+        shell: bash
+        run: |
+          set +e
+          sheet=$(ls -t reports/demo_bank_messy_*/demo_bank_messy_corrected.csv | head -1)
+          python run.py "$sheet" --demo --brain off
+          test "$?" -eq 1

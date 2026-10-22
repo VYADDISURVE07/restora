@@ -1,0 +1,13 @@
+# Power-user settings for the Demo Bank example. Run from the Restora folder:
+#   python run.py examples/power_user/beneficiaries.csv --demo --config examples/power_user/restora.toml
+
+[brain]
+mode = "rules"          # deterministic: no AI involved, same decisions every run
+seed = 42               # the same generated test data every run
+
+[heal]
+mode = "suggest"        # report verified fixes, but let a human apply them
+max_attempts = 2
+
+[plugins]
+folder = "examples/power_user/plugins"

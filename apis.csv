@@ -1,0 +1,4 @@
+﻿Name,Method,URL,Headers,Body,ExpectedStatus,ExpectedResponse
+#Example - health check (remove the # to switch a row on),GET,https://your-server.example.com/api/health,,,200,"{""status"":""UP""}"
+#Example - login,POST,https://your-server.example.com/api/login,,"{""username"":""abc"",""password"":""xyz""}",200,"{""token"":""*""}"
+#Example - uses the token from the login row,GET,/api/profile,Authorization: Bearer <token>,,200,
