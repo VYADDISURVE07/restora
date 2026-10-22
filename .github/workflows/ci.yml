@@ -23,21 +23,23 @@ jobs:
         with:
           python-version: ${{ matrix.python }}
       - name: Install
-        run: pip install -r requirements.txt
+        run: pip install -r requirements.txt pytest-github-actions-annotate-failures
       - name: Restora's own tests
         run: python run.py --selftest
       - name: Demo Bank (expects exactly the one deliberate server error)
         shell: bash
         run: |
           set +e
-          python run.py --demo --brain rules --junit demo-junit.xml
+          python run.py --demo --brain rules --junit demo-junit.xml > demo.log 2>&1
           code=$?
-          echo "exit code: $code"
-          test "$code" -eq 1
+          cat demo.log
+          if [ "$code" -ne 1 ]; then echo "::error title=Demo Bank::exit code $code, expected 1: $(grep -E 'FAILED|Error' demo.log | head -3 | tr '\n' ' ')"; exit 1; fi
       - name: Corrected sheet passes with the brain off
         shell: bash
         run: |
           set +e
           sheet=$(ls -t reports/demo_bank_messy_*/demo_bank_messy_corrected.csv | head -1)
-          python run.py "$sheet" --demo --brain off
-          test "$?" -eq 1
+          python run.py "$sheet" --demo --brain off > corrected.log 2>&1
+          code=$?
+          cat corrected.log
+          if [ "$code" -ne 1 ]; then echo "::error title=Corrected sheet::exit code $code, expected 1: $(grep -E 'FAILED|Error' corrected.log | head -3 | tr '\n' ' ')"; exit 1; fi
