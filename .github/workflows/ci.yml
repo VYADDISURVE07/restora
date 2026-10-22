@@ -10,11 +10,16 @@ jobs:
       fail-fast: false
       matrix:
         os: [ubuntu-latest, windows-latest]
-        python: ["3.9", "3.12", "3.13"]
+        python: ["3.12", "3.13", "3.14"]
+        include:                       # the oldest supported Python (newer Ubuntu images no longer ship 3.9)
+          - os: ubuntu-22.04
+            python: "3.9"
+          - os: windows-latest
+            python: "3.9"
     runs-on: ${{ matrix.os }}
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
         with:
           python-version: ${{ matrix.python }}
       - name: Install
