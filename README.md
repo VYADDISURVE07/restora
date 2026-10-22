@@ -13,9 +13,10 @@ computer, for free, with an optional open-source AI model.
 
 ![Restora Studio after a run: healed rows show the brain's edits as tracked changes](docs/images/studio-after-run.png)
 
-> **[Watch the demo video](https://github.com/VYADDISURVE07/restora/raw/main/docs/media/restora_demo.mp4)** (3½ minutes, recorded on a Windows PC with the local
-> model). It shows a tester with an incomplete sheet, a test written from plain English, and a power user on the
-> command line.
+> **[Watch the demo video](https://github.com/VYADDISURVE07/restora/raw/main/docs/media/restora_demo.mp4)** (4 minutes, with sound, recorded on a Windows PC
+> with the local model). It shows a tester with an incomplete sheet, a test written from plain English, and a power
+> user on the command line. The voice is Kokoro-82M, an open text-to-speech model, and the music was generated for
+> the video.
 
 ---
 

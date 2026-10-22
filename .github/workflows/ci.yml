@@ -4,8 +4,13 @@ on:
   push:
   pull_request:
 
+concurrency:                           # a new push replaces a run that is still in progress
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   test:
+    timeout-minutes: 15
     strategy:
       fail-fast: false
       matrix:
@@ -23,9 +28,18 @@ jobs:
         with:
           python-version: ${{ matrix.python }}
       - name: Install
-        run: pip install -r requirements.txt pytest-github-actions-annotate-failures
+        run: pip install -r requirements.txt pytest-github-actions-annotate-failures pytest-timeout
       - name: Restora's own tests
-        run: python run.py --selftest
+        shell: bash
+        run: |
+          set +e
+          python -m pytest selftest -q -p no:cacheprovider -c pytest.ini -rf --timeout=120 > selftest.log 2>&1
+          code=$?
+          cat selftest.log
+          if [ "$code" -ne 0 ]; then
+            { echo "### Self-tests failed (${{ matrix.os }}, Python ${{ matrix.python }})"; echo '```'; tail -80 selftest.log; echo '```'; } >> "$GITHUB_STEP_SUMMARY"
+            exit 1
+          fi
       - name: Demo Bank (expects exactly the one deliberate server error)
         shell: bash
         run: |
@@ -33,7 +47,10 @@ jobs:
           python run.py --demo --brain rules --junit demo-junit.xml > demo.log 2>&1
           code=$?
           cat demo.log
-          if [ "$code" -ne 1 ]; then echo "::error title=Demo Bank::exit code $code, expected 1: $(grep -E 'FAILED|Error' demo.log | head -3 | tr '\n' ' ')"; exit 1; fi
+          if [ "$code" -ne 1 ]; then
+            { echo "### Demo Bank: exit code $code, expected 1"; echo '```'; tail -60 demo.log; echo '```'; } >> "$GITHUB_STEP_SUMMARY"
+            exit 1
+          fi
       - name: Corrected sheet passes with the brain off
         shell: bash
         run: |
@@ -42,4 +59,7 @@ jobs:
           python run.py "$sheet" --demo --brain off > corrected.log 2>&1
           code=$?
           cat corrected.log
-          if [ "$code" -ne 1 ]; then echo "::error title=Corrected sheet::exit code $code, expected 1: $(grep -E 'FAILED|Error' corrected.log | head -3 | tr '\n' ' ')"; exit 1; fi
+          if [ "$code" -ne 1 ]; then
+            { echo "### Corrected sheet: exit code $code, expected 1"; echo '```'; tail -60 corrected.log; echo '```'; } >> "$GITHUB_STEP_SUMMARY"
+            exit 1
+          fi
