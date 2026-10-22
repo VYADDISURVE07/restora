@@ -10,7 +10,7 @@ about 4 GB more. Everything runs on your computer.
 **Or with git:**
 
 ```text
-git clone https://github.com/vnshdfc/restora.git
+git clone https://github.com/VYADDISURVE07/restora.git
 ```
 
 ## 2. Install Python (skip if `python --version` already shows 3.9 or newer)

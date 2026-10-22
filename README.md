@@ -6,16 +6,16 @@ request, Restora reads the error, fixes the request and tries again, then explai
 whatever still fails. Every change shows up as a tracked change you can review. It runs on your own
 computer, for free, with an optional open-source AI model.
 
-[![Self-tests](https://github.com/vnshdfc/restora/actions/workflows/ci.yml/badge.svg)](https://github.com/vnshdfc/restora/actions/workflows/ci.yml)
+[![Self-tests](https://github.com/VYADDISURVE07/restora/actions/workflows/ci.yml/badge.svg)](https://github.com/VYADDISURVE07/restora/actions/workflows/ci.yml)
 ![License: MIT](https://img.shields.io/badge/license-MIT-green)
 ![Python 3.9+](https://img.shields.io/badge/python-3.9%2B-blue)
 ![Runs offline](https://img.shields.io/badge/runs-offline-6a3fd0)
 
 ![Restora Studio after a run: healed rows show the brain's edits as tracked changes](docs/images/studio-after-run.png)
 
-> **Demo video** (3½ minutes, recorded on a Windows PC with the local model): see the
-> [latest release](https://github.com/vnshdfc/restora/releases/latest). It shows a tester with an incomplete sheet, a
-> test written from plain English, and a power user on the command line.
+> **[Watch the demo video](docs/media/restora_demo.mp4)** (3½ minutes, recorded on a Windows PC with the local
+> model). It shows a tester with an incomplete sheet, a test written from plain English, and a power user on the
+> command line.
 
 ---
 

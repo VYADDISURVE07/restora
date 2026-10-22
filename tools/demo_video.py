@@ -423,7 +423,7 @@ def main(argv=None) -> int:
     ap.add_argument("--headless", action="store_true", help="do not show the browser window while recording")
     ap.add_argument("--skip-ai", action="store_true", help="leave out the plain-English (AI) scene")
     ap.add_argument("--author", default="Built by Vedant Surve")
-    ap.add_argument("--repo", default="github.com/vnshdfc/restora")
+    ap.add_argument("--repo", default="github.com/VYADDISURVE07/restora")
     ap.add_argument("--port", type=int, default=8765)
     ap.add_argument("--out", default=str(ROOT / "demo_video_out"))
     ap.add_argument("--ai-url", default=None, help=argparse.SUPPRESS)
