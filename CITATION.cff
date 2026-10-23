@@ -12,6 +12,11 @@ abstract: >-
   reading the error (rules first, an optional local AI model second), refuses to
   make negative tests pass or to heal server errors, and writes a corrected sheet
   with every change tracked.
+doi: 10.5281/zenodo.23605522
+identifiers:
+  - type: doi
+    value: 10.5281/zenodo.23605522
+    description: "Zenodo archive of version 1.0.0"
 repository-code: "https://github.com/VYADDISURVE07/restora"
 license: Apache-2.0
 version: 1.0.0

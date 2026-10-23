@@ -10,6 +10,7 @@ Created by **Vedant Surve**.
 
 [![Self-tests](https://github.com/VYADDISURVE07/restora/actions/workflows/ci.yml/badge.svg)](https://github.com/VYADDISURVE07/restora/actions/workflows/ci.yml)
 [![License: Apache-2.0](https://img.shields.io/badge/license-Apache--2.0-green)](LICENSE)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23605522.svg)](https://doi.org/10.5281/zenodo.23605522)
 ![Python 3.9+](https://img.shields.io/badge/python-3.9%2B-blue)
 ![Runs offline](https://img.shields.io/badge/runs-offline-6a3fd0)
 
@@ -199,6 +200,9 @@ and mark the files you changed.
 If you use Restora or build on it, please credit it as "Restora by Vedant Surve" with a link to this
 repository. GitHub's **Cite this repository** button gives a ready-made citation (from
 [CITATION.cff](CITATION.cff)).
+
+> Surve, V. (2026). *Restora: self-healing API tests from a spreadsheet* (Version v1.0.0) [Computer software].
+> Zenodo. https://doi.org/10.5281/zenodo.23605522
 
 The name "Restora" and its logo identify this project. The licence does not cover them, so a modified
 version should use a different name.
