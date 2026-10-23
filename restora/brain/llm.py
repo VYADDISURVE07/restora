@@ -1,3 +1,5 @@
+# Copyright 2026 Vedant Surve
+# SPDX-License-Identifier: Apache-2.0
 """Talking to a local language model: Ollama, or any OpenAI-compatible server (LM Studio, llama.cpp,
 vLLM, Jan, LocalAI ...). Free and offline with a local model; nothing leaves the machine.
 

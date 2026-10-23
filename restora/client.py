@@ -1,3 +1,5 @@
+# Copyright 2026 Vedant Surve
+# SPDX-License-Identifier: Apache-2.0
 """Send one request. Works out the headers you did not type."""
 from __future__ import annotations
 

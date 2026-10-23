@@ -1,3 +1,4 @@
+/* Copyright 2026 Vedant Surve. SPDX-License-Identifier: Apache-2.0 */
 /* Restora Studio - plain JavaScript, no build step, works offline. */
 "use strict";
 

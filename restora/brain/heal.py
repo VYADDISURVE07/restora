@@ -1,3 +1,5 @@
+# Copyright 2026 Vedant Surve
+# SPDX-License-Identifier: Apache-2.0
 """Self-healing: read why the API rejected a request, fix the request, try again.
 
 Ground rules (these are what make healing safe to use on a test suite):

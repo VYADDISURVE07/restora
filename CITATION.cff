@@ -1,0 +1,24 @@
+cff-version: 1.2.0
+message: "If you use Restora or build on it, please cite it as below."
+title: "Restora: self-healing API tests from a spreadsheet"
+type: software
+authors:
+  - given-names: Vedant
+    family-names: Surve
+abstract: >-
+  Restora runs API tests from a spreadsheet, a Postman collection or cURL
+  commands. It fills gaps from earlier responses or realistic test data, orders
+  rows so producers run before consumers, heals requests the API rejects by
+  reading the error (rules first, an optional local AI model second), refuses to
+  make negative tests pass or to heal server errors, and writes a corrected sheet
+  with every change tracked.
+repository-code: "https://github.com/VYADDISURVE07/restora"
+license: Apache-2.0
+version: 1.0.0
+date-released: 2026-10-24
+keywords:
+  - API testing
+  - test automation
+  - self-healing tests
+  - local LLM
+  - pytest

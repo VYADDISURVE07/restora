@@ -1,3 +1,5 @@
+# Copyright 2026 Vedant Surve
+# SPDX-License-Identifier: Apache-2.0
 """Realistic test data for fields a tester left blank.
 
 The brain picks a generator from the field's name ('email', 'mobileNumber', 'ifscCode' ...).

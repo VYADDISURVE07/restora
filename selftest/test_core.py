@@ -1,3 +1,5 @@
+# Copyright 2026 Vedant Surve
+# SPDX-License-Identifier: Apache-2.0
 """Unit tests for Restora's core (sheet, Postman, compare, masking).  Run:  python run.py --selftest"""
 import base64
 import json

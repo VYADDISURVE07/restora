@@ -1,3 +1,5 @@
+# Copyright 2026 Vedant Surve
+# SPDX-License-Identifier: Apache-2.0
 """Tests for status classes (4xx) and for negative tests refused for the wrong reason (brain/guard.py)."""
 import csv
 import io

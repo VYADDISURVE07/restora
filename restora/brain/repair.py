@@ -1,3 +1,5 @@
+# Copyright 2026 Vedant Surve
+# SPDX-License-Identifier: Apache-2.0
 """Fixing what people type: almost-JSON bodies, relative URLs, blank methods.
 
 Everything here is deterministic and explains itself; nothing is guessed silently.

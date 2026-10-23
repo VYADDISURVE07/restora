@@ -6,8 +6,10 @@ request, Restora reads the error, fixes the request and tries again, then explai
 whatever still fails. Every change shows up as a tracked change you can review. It runs on your own
 computer, for free, with an optional open-source AI model.
 
+Created by **Vedant Surve**.
+
 [![Self-tests](https://github.com/VYADDISURVE07/restora/actions/workflows/ci.yml/badge.svg)](https://github.com/VYADDISURVE07/restora/actions/workflows/ci.yml)
-![License: MIT](https://img.shields.io/badge/license-MIT-green)
+[![License: Apache-2.0](https://img.shields.io/badge/license-Apache--2.0-green)](LICENSE)
 ![Python 3.9+](https://img.shields.io/badge/python-3.9%2B-blue)
 ![Runs offline](https://img.shields.io/badge/runs-offline-6a3fd0)
 
@@ -188,4 +190,17 @@ Built by **Vedant Surve**, who automates API and UI testing in banking. Restora 
 spreadsheet-driven tester. The brain was added so that people who are not programmers can rely on it,
 without their test data leaving the building.
 
-Licensed under the [MIT License](LICENSE).
+## Licence and credit
+
+Restora is open source under the [Apache License 2.0](LICENSE). You may use, change and share it,
+including at work, as long as you keep the [NOTICE](NOTICE) file and the copyright line in each file,
+and mark the files you changed.
+
+If you use Restora or build on it, please credit it as "Restora by Vedant Surve" with a link to this
+repository. GitHub's **Cite this repository** button gives a ready-made citation (from
+[CITATION.cff](CITATION.cff)).
+
+The name "Restora" and its logo identify this project. The licence does not cover them, so a modified
+version should use a different name.
+
+Contributions are welcome: see [CONTRIBUTING.md](CONTRIBUTING.md).

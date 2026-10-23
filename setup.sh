@@ -1,4 +1,6 @@
 #!/usr/bin/env sh
+# Copyright 2026 Vedant Surve
+# SPDX-License-Identifier: Apache-2.0
 # Restora - one-time setup for Mac / Linux.   Run:  sh setup.sh
 set -e
 cd "$(dirname "$0")"

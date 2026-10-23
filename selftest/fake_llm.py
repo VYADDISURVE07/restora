@@ -1,3 +1,5 @@
+# Copyright 2026 Vedant Surve
+# SPDX-License-Identifier: Apache-2.0
 """A stand-in for Ollama / an OpenAI-compatible server, so the AI paths can be tested without a model."""
 from __future__ import annotations
 

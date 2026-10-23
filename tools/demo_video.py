@@ -1,4 +1,6 @@
 #!/usr/bin/env python
+# Copyright 2026 Vedant Surve
+# SPDX-License-Identifier: Apache-2.0
 """Record Restora's demo video: a scripted walk-through captured frame by frame from the browser, encoded to MP4.
 
 Everything on screen is real: Studio, the Demo Bank, the brain, the local AI model and the commands.
@@ -404,7 +406,7 @@ def scenes(d: Director, author: str, repo: str, model: str):
 
     # ---- 7. close
     d.card(sub="Rules first, local AI second. Never hides a real bug.",
-           lines=f"{repo}|MIT licensed: free to use and change", by=author, nospec="1")
+           lines=f"{repo}|Apache-2.0 licensed: free to use and change, with credit", by=author, nospec="1")
     d.hold(5200)
 
 

@@ -1,3 +1,5 @@
+# Copyright 2026 Vedant Surve
+# SPDX-License-Identifier: Apache-2.0
 """Compare the sample (expected) response with what the API really returned.
 
 Rules - deliberately few:

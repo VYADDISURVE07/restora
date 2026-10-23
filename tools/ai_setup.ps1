@@ -1,3 +1,5 @@
+# Copyright 2026 Vedant Surve
+# SPDX-License-Identifier: Apache-2.0
 # Restora - install the free local AI: Ollama (official installer from ollama.com) + one small model.
 # Safe to run again: it skips whatever is already installed. Writes ai_setup.log next to this script.
 param([string]$Model = "qwen3:4b-instruct")

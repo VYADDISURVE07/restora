@@ -1,3 +1,5 @@
+# Copyright 2026 Vedant Surve
+# SPDX-License-Identifier: Apache-2.0
 """Restora's brain: fills gaps, fixes the order, heals rejected requests and explains failures.
 
     plan()     before the run: tidy rows, find what each row needs, order rows by producer -> consumer

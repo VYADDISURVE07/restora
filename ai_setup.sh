@@ -1,4 +1,6 @@
 #!/usr/bin/env sh
+# Copyright 2026 Vedant Surve
+# SPDX-License-Identifier: Apache-2.0
 # Restora - install the free local AI (Ollama + a small open model). Optional: Restora works without it.
 #   sh ai_setup.sh               installs qwen3:4b-instruct (about 2.5 GB)
 #   sh ai_setup.sh qwen3:1.7b    a smaller model for older machines

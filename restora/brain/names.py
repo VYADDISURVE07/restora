@@ -1,3 +1,5 @@
+# Copyright 2026 Vedant Surve
+# SPDX-License-Identifier: Apache-2.0
 """Understanding field names the way a person does.
 
 `accessToken`, `access_token`, `Access-Token` and `<access token>` are the same thing to a tester,

@@ -1,3 +1,5 @@
+# Copyright 2026 Vedant Surve
+# SPDX-License-Identifier: Apache-2.0
 """Is this row meant to succeed or meant to fail?
 
 A negative test ("login with a wrong password gives 401") must never be 'healed' into passing:

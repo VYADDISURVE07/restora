@@ -1,3 +1,5 @@
+# Copyright 2026 Vedant Surve
+# SPDX-License-Identifier: Apache-2.0
 """Tiny JSON path helpers: 'customer.email', 'items[0].qty', '$.data.id'."""
 from __future__ import annotations
 

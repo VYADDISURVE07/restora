@@ -1,3 +1,5 @@
+# Copyright 2026 Vedant Surve
+# SPDX-License-Identifier: Apache-2.0
 """A fake API so you can try Restora on any machine, with no internet and no real system.
 
 Started automatically by:  python run.py --demo   (and by Studio's "Use the demo API" button)

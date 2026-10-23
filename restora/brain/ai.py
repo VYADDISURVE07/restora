@@ -1,3 +1,5 @@
+# Copyright 2026 Vedant Surve
+# SPDX-License-Identifier: Apache-2.0
 """What the local AI model is asked to do - only when the rules have no answer.
 
 1. suggest_value   a realistic value for a field the rules do not recognise ('purposeCode', 'branchName' ...)

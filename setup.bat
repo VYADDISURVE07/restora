@@ -1,4 +1,6 @@
 @echo off
+rem Copyright 2026 Vedant Surve
+rem SPDX-License-Identifier: Apache-2.0
 rem Restora - one-time setup for Windows. Double-click it, or run:  setup.bat
 setlocal
 cd /d "%~dp0"

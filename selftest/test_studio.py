@@ -1,3 +1,5 @@
+# Copyright 2026 Vedant Surve
+# SPDX-License-Identifier: Apache-2.0
 """Studio's web API, end to end (no browser needed)."""
 import json
 import time

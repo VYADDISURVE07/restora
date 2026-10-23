@@ -1,3 +1,5 @@
+# Copyright 2026 Vedant Surve
+# SPDX-License-Identifier: Apache-2.0
 """One run of Restora: settings + brain + plug-ins + the records it produced.
 
 Shared by the command line (through pytest) and by Studio (the web app), so both behave exactly the same.

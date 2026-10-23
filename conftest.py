@@ -1,3 +1,5 @@
+# Copyright 2026 Vedant Surve
+# SPDX-License-Identifier: Apache-2.0
 """pytest wiring: the brain plans the run, then one test per sheet row (in the planned order); reports at the end."""
 import datetime
 import re

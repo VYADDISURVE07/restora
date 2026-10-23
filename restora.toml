@@ -1,3 +1,5 @@
+# Copyright 2026 Vedant Surve
+# SPDX-License-Identifier: Apache-2.0
 # Restora settings. Every value here is optional: delete a line and the default is used.
 # Command-line flags win over this file (for example: run.bat --brain rules --heal suggest).
 

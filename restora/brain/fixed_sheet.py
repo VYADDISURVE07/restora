@@ -1,3 +1,5 @@
+# Copyright 2026 Vedant Surve
+# SPDX-License-Identifier: Apache-2.0
 """The corrected sheet: everything the brain learned, written back as plain cells a person can review.
 
 * rows in the order they actually ran

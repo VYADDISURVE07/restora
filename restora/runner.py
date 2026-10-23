@@ -1,3 +1,5 @@
+# Copyright 2026 Vedant Surve
+# SPDX-License-Identifier: Apache-2.0
 """Run one sheet row end-to-end and produce a Record (everything the reports need, secrets already masked).
 
     prepare (headers) -> brain.fill (gaps) -> plug-ins -> send -> compare -> brain.heal (if rejected)

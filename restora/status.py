@@ -1,3 +1,5 @@
+# Copyright 2026 Vedant Surve
+# SPDX-License-Identifier: Apache-2.0
 """ExpectedStatus values: an exact code such as 201, or a whole class such as 4xx (any client error)."""
 from __future__ import annotations
 

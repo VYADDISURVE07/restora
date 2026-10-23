@@ -1,3 +1,5 @@
+# Copyright 2026 Vedant Surve
+# SPDX-License-Identifier: Apache-2.0
 """The one and only test. conftest.py runs it once for every row of your sheet, in the order the brain planned."""
 import pytest
 

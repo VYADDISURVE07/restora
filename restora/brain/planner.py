@@ -1,3 +1,5 @@
+# Copyright 2026 Vedant Surve
+# SPDX-License-Identifier: Apache-2.0
 """Before anything is sent: tidy each row, find what every row needs, and put the rows in a workable order.
 
 Ordering follows producer -> consumer links (the idea behind Microsoft's RESTler, applied to a plain sheet

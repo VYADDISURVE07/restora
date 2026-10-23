@@ -1,3 +1,5 @@
+# Copyright 2026 Vedant Surve
+# SPDX-License-Identifier: Apache-2.0
 """Tests for the brain: gaps, order, healing, comparison, explanations, the corrected sheet, plug-ins and AI paths."""
 import json
 import re

@@ -1,3 +1,5 @@
+# Copyright 2026 Vedant Surve
+# SPDX-License-Identifier: Apache-2.0
 """Restora Studio: a local web app for people who would rather click than type commands.
 
 Runs on this computer only (127.0.0.1), needs nothing beyond Python's standard library, and works offline.

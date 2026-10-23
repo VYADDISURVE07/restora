@@ -1,3 +1,5 @@
+# Copyright 2026 Vedant Surve
+# SPDX-License-Identifier: Apache-2.0
 """Values that change on every call (ids, timestamps, tokens).
 
 A tester pasting a sample response from the documentation should not have to know the "*" trick:

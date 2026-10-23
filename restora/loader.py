@@ -1,3 +1,5 @@
+# Copyright 2026 Vedant Surve
+# SPDX-License-Identifier: Apache-2.0
 """Read the input sheet (CSV or Excel) into Row objects.
 
 The sheet only needs two things per row: a URL and (optionally) a Method.

@@ -1,4 +1,6 @@
 #!/usr/bin/env python
+# Copyright 2026 Vedant Surve
+# SPDX-License-Identifier: Apache-2.0
 """Restora - self-healing API tests from a spreadsheet, a Postman collection or cURL commands.
 
     python run.py                          run apis.csv

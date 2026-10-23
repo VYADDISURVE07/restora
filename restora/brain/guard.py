@@ -1,3 +1,5 @@
+# Copyright 2026 Vedant Surve
+# SPDX-License-Identifier: Apache-2.0
 """Negative tests that pass for the wrong reason.
 
 A negative test ("a transfer with a negative amount is rejected") can pass by accident: the API may refuse

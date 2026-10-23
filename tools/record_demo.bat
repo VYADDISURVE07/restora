@@ -1,4 +1,6 @@
 @echo off
+rem Copyright 2026 Vedant Surve
+rem SPDX-License-Identifier: Apache-2.0
 rem Record Restora's demo video on this PC: Microsoft Edge plays the script, the local AI model answers for real.
 rem Needs setup.bat and ai_setup.bat first. Takes about five minutes. Output: demo_video_out\restora_demo.mp4
 rem Usage:  tools\record_demo.bat            (watch it happen in a full-screen Edge window)

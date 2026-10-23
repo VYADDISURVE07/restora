@@ -1,3 +1,5 @@
+# Copyright 2026 Vedant Surve
+# SPDX-License-Identifier: Apache-2.0
 """Small text helpers shared by the loader, the client and the masker."""
 from __future__ import annotations
 

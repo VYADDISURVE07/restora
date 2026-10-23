@@ -1,3 +1,5 @@
+# Copyright 2026 Vedant Surve
+# SPDX-License-Identifier: Apache-2.0
 """Turn cURL commands (copied from a browser's DevTools, Swagger UI or API docs) into sheet rows.
 
 Understands bash style (\\ line endings) and Windows cmd style (^ escapes, as Chrome's "Copy as cURL (cmd)").

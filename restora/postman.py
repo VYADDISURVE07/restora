@@ -1,3 +1,5 @@
+# Copyright 2026 Vedant Surve
+# SPDX-License-Identifier: Apache-2.0
 """Turn a Postman collection (v2.0 / v2.1 JSON export) into the Lite sheet format.
 
 What is carried over : method, URL, enabled headers, raw / urlencoded / GraphQL bodies,

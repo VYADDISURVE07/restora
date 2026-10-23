@@ -1,3 +1,5 @@
+# Copyright 2026 Vedant Surve
+# SPDX-License-Identifier: Apache-2.0
 # Power-user settings for the Demo Bank example. Run from the Restora folder:
 #   python run.py examples/power_user/beneficiaries.csv --demo --config examples/power_user/restora.toml
 

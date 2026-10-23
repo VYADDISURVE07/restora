@@ -1,3 +1,5 @@
+# Copyright 2026 Vedant Surve
+# SPDX-License-Identifier: Apache-2.0
 """Allure results (optional). If allure-pytest is not installed everything here quietly does nothing."""
 from __future__ import annotations
 

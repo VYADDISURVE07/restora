@@ -1,3 +1,5 @@
+# Copyright 2026 Vedant Surve
+# SPDX-License-Identifier: Apache-2.0
 """All of Restora's knobs in one place: defaults <- restora.toml <- command-line flags."""
 from __future__ import annotations
 

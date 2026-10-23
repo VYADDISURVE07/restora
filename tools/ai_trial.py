@@ -1,3 +1,5 @@
+# Copyright 2026 Vedant Surve
+# SPDX-License-Identifier: Apache-2.0
 """Try the local AI model on every job Restora gives it, and time each answer.
 
     python tools/ai_trial.py                      the model in restora.toml

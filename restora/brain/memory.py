@@ -1,3 +1,5 @@
+# Copyright 2026 Vedant Surve
+# SPDX-License-Identifier: Apache-2.0
 """What Restora has learned during a run: every value an API returned, and every value it sent.
 
 This is what lets a later row say <token> or {customerId} and get the real value from an earlier response,

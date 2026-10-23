@@ -1,3 +1,5 @@
+# Copyright 2026 Vedant Surve
+# SPDX-License-Identifier: Apache-2.0
 """Read an API's error response the way a tester does, and turn it into structured issues.
 
 Understands the common shapes: plain messages ("email is required"), Spring / ASP.NET / Rails / Laravel

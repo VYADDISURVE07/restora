@@ -1,3 +1,5 @@
+# Copyright 2026 Vedant Surve
+# SPDX-License-Identifier: Apache-2.0
 """One or two plain-English sentences for every failure: what happened and what to do about it."""
 from __future__ import annotations
 

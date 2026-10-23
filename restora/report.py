@@ -1,3 +1,5 @@
+# Copyright 2026 Vedant Surve
+# SPDX-License-Identifier: Apache-2.0
 """Reports that need nothing installed: one self-contained HTML page and one CSV."""
 from __future__ import annotations
 

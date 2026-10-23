@@ -1,3 +1,5 @@
+# Copyright 2026 Vedant Surve
+# SPDX-License-Identifier: Apache-2.0
 """Plug-in hooks for power users: change anything Restora does with a few lines of Python.
 
 Put a .py file in the plugins/ folder (see restora.toml [plugins]). Example:

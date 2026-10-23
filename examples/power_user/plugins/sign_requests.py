@@ -1,3 +1,5 @@
+# Copyright 2026 Vedant Surve
+# SPDX-License-Identifier: Apache-2.0
 """Example plug-in: sign every Demo Bank beneficiary request, the way many payment APIs require.
 
 No AI can guess a shared secret, so this is where a power user steps in - six lines of Python.

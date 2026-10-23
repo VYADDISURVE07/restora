@@ -1,4 +1,6 @@
 #!/usr/bin/env sh
+# Copyright 2026 Vedant Surve
+# SPDX-License-Identifier: Apache-2.0
 # Restora - run.   Examples:  sh run.sh   |   sh run.sh my_apis.csv   |   sh run.sh --demo
 HERE="$(cd "$(dirname "$0")" && pwd)"
 if [ ! -x "$HERE/.venv/bin/python" ]; then

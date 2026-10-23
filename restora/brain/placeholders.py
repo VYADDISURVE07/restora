@@ -1,3 +1,5 @@
+# Copyright 2026 Vedant Surve
+# SPDX-License-Identifier: Apache-2.0
 """Find the gaps in a request: values a tester left for later.
 
 Explicit references (always understood, brain on or off):

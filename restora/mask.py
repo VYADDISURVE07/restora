@@ -1,3 +1,5 @@
+# Copyright 2026 Vedant Surve
+# SPDX-License-Identifier: Apache-2.0
 """Hide secrets in anything that goes into a report (headers, JSON bodies, diff values).
 
 Masking is for DISPLAY only. The real values are still sent to the API and still compared.

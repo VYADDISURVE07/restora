@@ -1,3 +1,5 @@
+# Copyright 2026 Vedant Surve
+# SPDX-License-Identifier: Apache-2.0
 """One door for every kind of input: CSV, Excel, Postman collection, or a text file of cURL commands."""
 from __future__ import annotations
 

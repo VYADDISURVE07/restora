@@ -1,4 +1,6 @@
 @echo off
+rem Copyright 2026 Vedant Surve
+rem SPDX-License-Identifier: Apache-2.0
 rem Restora - run.   Examples:  run.bat   |   run.bat my_apis.xlsx   |   run.bat --demo   |   run.bat collection.json
 if not exist "%~dp0.venv\Scripts\python.exe" (
   echo Run setup.bat first.
